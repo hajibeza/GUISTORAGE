@@ -1,6 +1,6 @@
 local library = {
-	Version = "0.34",
-	WorkspaceName = "Pepsi Lib",
+	Version = "Kincha_Hub_Edition",
+	WorkspaceName = "Kincha Hub",
 	flags = {},
 	signals = {},
 	objects = {},

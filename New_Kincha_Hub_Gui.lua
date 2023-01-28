@@ -1,5 +1,5 @@
 local library = {
-	Version = "Kincha_Hub_Edition",
+	Version = "0.0.1",
 	WorkspaceName = "Kincha Hub",
 	flags = {},
 	signals = {},

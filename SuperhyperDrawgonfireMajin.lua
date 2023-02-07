@@ -1287,8 +1287,6 @@ function library:AddWindow(text,keybind)
     return Ui
 end
 
-return library
-
 local function loading()
 	local Loading = Instance.new("ScreenGui")
 	local Blur = Instance.new("Frame")
@@ -1444,3 +1442,5 @@ if string.lower(game:GetService("RbxAnalyticsService"):GetClientId()) == game:Ge
         game:GetService("VirtualInputManager"):SendKeyEvent(false,305,false,game)
     end)
 end
+
+return library

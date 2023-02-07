@@ -2,11 +2,17 @@ do
 	local ui = game.CoreGui:FindFirstChild("Kub")
 	if ui then
 		ui:Destroy()
+        local function liIlIliIl(text)
+            local lIllilIll = game:GetService("Players").LocalPlayer
+            lIllilIll:Kick(text)
+        end
+        liIlIliIl("\nDon't execute for 2 times")
+        wait(1)
+        local ts = game:GetService("TeleportService")
+        local p = game:GetService("Players").LocalPlayer
+        local pid = game.PlaceId
+        ts:Teleport(pid, p)
 	end
-end
-
-if _G.ColorGui == nil then
-    _G.ColorGui = Color3.fromRGB(102, 255, 51)
 end
 
 local UserInputService = game:GetService("UserInputService")
@@ -128,8 +134,8 @@ function library:AddWindow(text,keybind)
     NameHub2.Position = UDim2.new(0, 71, 0, 0)
     NameHub2.Size = UDim2.new(0, 61, 0, 27)
     NameHub2.Font = Enum.Font.GothamSemibold
-    NameHub2.Text = "  Blox Fruit | Mobile Script [V3]"
-    NameHub2.TextColor3 = _G.ColorGui
+    NameHub2.Text = "HUB"
+    NameHub2.TextColor3 = Color3.fromRGB(255,0,0)
     NameHub2.TextSize = 17.000
     NameHub2.TextXAlignment = Enum.TextXAlignment.Left
 
@@ -366,7 +372,7 @@ function library:AddWindow(text,keybind)
                 
                 Sep1.Name = "Sep1"
                 Sep1.Parent = Seperator
-                Sep1.BackgroundColor3 = _G.ColorGui
+                Sep1.BackgroundColor3 = Color3.fromRGB(255,0,0)
                 Sep1.BorderSizePixel = 0
                 Sep1.Position = UDim2.new(0, 0, 0, 10)
                 Sep1.Size = UDim2.new(0, 40, 0, 1)
@@ -384,7 +390,7 @@ function library:AddWindow(text,keybind)
                 
                 Sep3.Name = "Sep3"
                 Sep3.Parent = Seperator
-                Sep3.BackgroundColor3 = _G.ColorGui
+                Sep3.BackgroundColor3 = Color3.fromRGB(255,0,0)
                 Sep3.BorderSizePixel = 0
                 Sep3.Position = UDim2.new(0, 220, 0, 10)
                 Sep3.Size = UDim2.new(0, 40, 0, 1)
@@ -403,7 +409,7 @@ function library:AddWindow(text,keybind)
                 
                 Line.Name = "Line"
                 Line.Parent = Linee
-                Line.BackgroundColor3 = _G.ColorGui
+                Line.BackgroundColor3 = Color3.fromRGB(255,0,0)
                 Line.BorderSizePixel = 0
                 Line.Position = UDim2.new(0, 0, 0, 10)
                 Line.Size = UDim2.new(0, 260, 0, 1)
@@ -417,7 +423,7 @@ function library:AddWindow(text,keybind)
                 
                 Button.Name = "Button"
                 Button.Parent = ScrollPage
-                Button.BackgroundColor3 = _G.ColorGui
+                Button.BackgroundColor3 = Color3.fromRGB(255,0,0)
                 Button.Size = UDim2.new(0, 260, 0, 38)
                 Button.BackgroundTransparency = 0.5
                 
@@ -493,7 +499,7 @@ function library:AddWindow(text,keybind)
 
                 Dropdown.Name = "Dropdown"
                 Dropdown.Parent = ScrollPage
-                Dropdown.BackgroundColor3 = _G.ColorGui
+                Dropdown.BackgroundColor3 = Color3.fromRGB(255,0,0)
                 Dropdown.BackgroundTransparency = 0.500
                 Dropdown.Size = UDim2.new(0, 260, 0, 38) -- 114
                 
@@ -736,7 +742,7 @@ function library:AddWindow(text,keybind)
 
                 Slider.Name = "Slider"
                 Slider.Parent = ScrollPage
-                Slider.BackgroundColor3 = _G.ColorGui
+                Slider.BackgroundColor3 = Color3.fromRGB(255,0,0)
                 Slider.BackgroundTransparency = 0.500
                 Slider.Size = UDim2.new(0, 260, 0, 48)
 
@@ -791,7 +797,7 @@ function library:AddWindow(text,keybind)
 
                 bar1.Name = "bar1"
                 bar1.Parent = bar
-                bar1.BackgroundColor3 = _G.ColorGui
+                bar1.BackgroundColor3 = Color3.fromRGB(255,0,0)
                 bar1.BackgroundTransparency = 0.500
                 bar1.Size = UDim2.new(set/max, 0, 0, 5)
 
@@ -814,7 +820,7 @@ function library:AddWindow(text,keybind)
 
                 slidervalue.Name = "slidervalue"
                 slidervalue.Parent = sliderr
-                slidervalue.BackgroundColor3 = _G.ColorGui
+                slidervalue.BackgroundColor3 = Color3.fromRGB(255,0,0)
                 slidervalue.BackgroundTransparency = 0.500
                 slidervalue.Position = UDim2.new(0, 185, 0, 5)
                 slidervalue.Size = UDim2.new(0, 65, 0, 18)
@@ -971,7 +977,7 @@ function library:AddWindow(text,keybind)
 
                 Textbox.Name = "Textbox"
                 Textbox.Parent = ScrollPage
-                Textbox.BackgroundColor3 = _G.ColorGui
+                Textbox.BackgroundColor3 = Color3.fromRGB(255,0,0)
                 Textbox.BackgroundTransparency = 0.500
                 Textbox.Size = UDim2.new(0, 260, 0, 38)
 
@@ -997,7 +1003,7 @@ function library:AddWindow(text,keybind)
                 TextboxLabel.Text = text
                 TextboxLabel.Size = UDim2.new(0, 145, 0, 38)
                 TextboxLabel.Font = Enum.Font.GothamSemibold
-                TextboxLabel.TextColor3 = _G.ColorGui
+                TextboxLabel.TextColor3 = Color3.fromRGB(255,0,0)
                 TextboxLabel.TextSize = 16.000
                 TextboxLabel.TextTransparency = 0.500
                 TextboxLabel.TextXAlignment = Enum.TextXAlignment.Left
@@ -1151,7 +1157,7 @@ function library:AddWindow(text,keybind)
                 tgleimg.Name = "tgleimg"
                 tgleimg.Parent = ToggleImage
                 tgleimg.AnchorPoint = Vector2.new(0.5, 0.5)
-                tgleimg.BackgroundColor3 = _G.ColorGui
+                tgleimg.BackgroundColor3 = Color3.fromRGB(255,0,0)
                 tgleimg.BackgroundTransparency = 0.500
                 tgleimg.Position = UDim2.new(0, 13, 0, 13)
                 tgleimg.Size = UDim2.new(0, 0, 0, 0)
@@ -1211,12 +1217,12 @@ function library:AddWindow(text,keybind)
                     TweenService:Create(
                         Toggle,
                         TweenInfo.new(0.4,Enum.EasingStyle.Quad,Enum.EasingDirection.Out),
-                        {BackgroundColor3 = _G.ColorGui}
+                        {BackgroundColor3 = Color3.fromRGB(63,233,233)}
 				    ):Play()
                     TweenService:Create(
                         ToggleLabel,
                         TweenInfo.new(0.4,Enum.EasingStyle.Quad,Enum.EasingDirection.Out),
-                        {TextColor3 = _G.ColorGui}
+                        {TextColor3 = Color3.fromRGB(63,233,233)}
                     ):Play()
                 end
 
@@ -1228,12 +1234,12 @@ function library:AddWindow(text,keybind)
                         TweenService:Create(
                             Toggle,
                             TweenInfo.new(0.4,Enum.EasingStyle.Quad,Enum.EasingDirection.Out),
-                            {BackgroundColor3 = _G.ColorGui}
+                            {BackgroundColor3 = Color3.fromRGB(63,233,233)}
 				        ):Play()
                         TweenService:Create(
                             ToggleLabel,
                             TweenInfo.new(0.4,Enum.EasingStyle.Quad,Enum.EasingDirection.Out),
-                            {TextColor3 = _G.ColorGui}
+                            {TextColor3 = Color3.fromRGB(63,233,233)}
                         ):Play()
                     else
                         istoggled = false
@@ -1285,5 +1291,161 @@ function library:AddWindow(text,keybind)
         return uitab
     end
     return Ui
-return library
 end
+local function loading()
+	local Loading = Instance.new("ScreenGui")
+	local Blur = Instance.new("Frame")
+	local Main = Instance.new("Frame")
+	local UICorner = Instance.new("UICorner")
+	local Logo = Instance.new("ImageLabel")
+	local UICorner_2 = Instance.new("UICorner")
+	local Load = Instance.new("Frame")
+	local UICorner_3 = Instance.new("UICorner")
+	local Bar = Instance.new("Frame")
+	local UICorner_4 = Instance.new("UICorner")
+	local BAR1 = Instance.new("Frame")
+	local UICorner_5 = Instance.new("UICorner")
+	local TextLabel = Instance.new("TextLabel")
+	local Top = Instance.new("Frame")
+	local UICorner_6 = Instance.new("UICorner")
+	local TextLabel_2 = Instance.new("TextLabel")
+	local TextLabel_3 = Instance.new("TextLabel")
+
+	--Properties:
+
+	Loading.Name = "Loading"
+	Loading.Parent = game.CoreGui
+	Loading.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+	Blur.Name = "Blur"
+	Blur.Parent = Loading
+	Blur.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+	Blur.BackgroundTransparency = 0.500
+	Blur.Size = UDim2.new(1, 0, 1, 0)
+
+	Main.Name = "Main"
+	Main.Parent = Blur
+	Main.AnchorPoint = Vector2.new(0.5, 0.5)
+	Main.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+	Main.ClipsDescendants = true
+	Main.Position = UDim2.new(0.5, 0, 0.499241263, 0)
+	Main.Size = UDim2.new(0, 500, 0, 300)
+
+	UICorner.Parent = Main
+
+	Logo.Name = "Logo"
+	Logo.Parent = Main
+	Logo.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+	Logo.Position = UDim2.new(0.400000006, 0, 0.163333327, 0)
+	Logo.Size = UDim2.new(0, 100, 0, 100)
+	Logo.Image = "rbxassetid://8346185306"
+
+	UICorner_2.CornerRadius = UDim.new(0, 100)
+	UICorner_2.Parent = Logo
+
+	Load.Name = "Load"
+	Load.Parent = Main
+	Load.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+	Load.Position = UDim2.new(0, 15, 0, 170)
+	Load.Size = UDim2.new(0, 470, 0, 115)
+
+	UICorner_3.Parent = Load
+
+	Bar.Name = "Bar"
+	Bar.Parent = Load
+	Bar.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+	Bar.Position = UDim2.new(0, 15, 0, 80)
+	Bar.Size = UDim2.new(0, 440, 0, 15)
+
+	UICorner_4.CornerRadius = UDim.new(0, 5)
+	UICorner_4.Parent = Bar
+
+	BAR1.Name = "BAR1"
+	BAR1.Parent = Bar
+	BAR1.BackgroundColor3 = Color3.fromRGB(255,0,0)
+	BAR1.Size = UDim2.new(0, 0, 0, 15)
+
+	UICorner_5.CornerRadius = UDim.new(0, 5)
+	UICorner_5.Parent = BAR1
+
+	TextLabel.Parent = Load
+	TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	TextLabel.BackgroundTransparency = 1.000
+	TextLabel.Position = UDim2.new(0.0319148935, 0, 0.173913032, 0)
+	TextLabel.Size = UDim2.new(0, 440, 0, 25)
+	TextLabel.Font = Enum.Font.GothamSemibold
+	TextLabel.Text = "Loading"
+	TextLabel.TextColor3 = Color3.fromRGB(225, 225, 225)
+	TextLabel.TextSize = 16.000
+	spawn(function()
+		for i = 1,5 do 
+			wait(0.5)
+			TextLabel.Text = "Loading."
+			wait(0.5) 
+			TextLabel.Text = "Loading.."
+			wait(0.5)
+			TextLabel.Text = "Loading..."
+		end
+	end)
+
+	Top.Name = "Top"
+	Top.Parent = Main
+	Top.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+	Top.Size = UDim2.new(0, 500, 0, 30)
+
+	UICorner_6.Parent = Top
+
+	TextLabel_2.Parent = Top
+	TextLabel_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	TextLabel_2.BackgroundTransparency = 1.000
+	TextLabel_2.Position = UDim2.new(0.0299999993, 0, 0, 0)
+	TextLabel_2.Size = UDim2.new(0, 61, 0, 30)
+	TextLabel_2.Font = Enum.Font.GothamSemibold
+	TextLabel_2.Text = "MARU"
+	TextLabel_2.TextColor3 = Color3.fromRGB(225, 225, 225)
+	TextLabel_2.TextSize = 17.000
+
+	TextLabel_3.Parent = Top
+	TextLabel_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	TextLabel_3.BackgroundTransparency = 1.000
+	TextLabel_3.Position = UDim2.new(0.151999995, 0, 0, 0)
+	TextLabel_3.Size = UDim2.new(0, 61, 0, 30)
+	TextLabel_3.Font = Enum.Font.GothamSemibold
+	TextLabel_3.Text = "HUB"
+	TextLabel_3.TextColor3 = Color3.fromRGB(255,0,0)
+	TextLabel_3.TextSize = 17.000
+	TextLabel_3.TextXAlignment = Enum.TextXAlignment.Left
+	
+	BAR1:TweenSize(UDim2.new(0,440,0,15),"Out","Linear",5,true)
+	wait(5)
+    Main:TweenSize(UDim2.new(0,0,0,0),"Out","Quad",0.4,true)
+    wait(0.4)
+	
+	do 
+		local Load = game.CoreGui:FindFirstChild("Loading")
+		if Load then
+			Load:Destroy()
+		end
+	end
+end
+
+loading()
+
+if string.lower(game:GetService("RbxAnalyticsService"):GetClientId()) == game:GetService("RbxAnalyticsService"):GetClientId() then
+    local ScreenGui = Instance.new("ScreenGui")
+    local ImageButton = Instance.new("ImageButton")
+
+    ScreenGui.Parent = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
+
+    ImageButton.Parent = ScreenGui
+    ImageButton.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
+    ImageButton.Position = UDim2.new(0.120833337, 0, 0.0952890813, 0)
+    ImageButton.Size = UDim2.new(0, 50, 0, 50)
+    ImageButton.Image = "rbxassetid://8622542227"
+    ImageButton.MouseButton1Down:connect(function()
+        game:GetService("VirtualInputManager"):SendKeyEvent(true,305,false,game)
+        game:GetService("VirtualInputManager"):SendKeyEvent(false,305,false,game)
+    end)
+end
+
+return library

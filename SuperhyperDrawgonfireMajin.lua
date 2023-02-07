@@ -1286,6 +1286,7 @@ function library:AddWindow(text,keybind)
     end
     return Ui
 end
+
 return library
 
 local function loading()

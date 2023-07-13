@@ -514,24 +514,24 @@ do
             Parent = SatVibMapInner;
         });
 
-        -- local CursorOuter = Library:Create('ImageLabel', {
-        --     AnchorPoint = Vector2.new(0.5, 0.5);
-        --     Size = UDim2.new(0, 6, 0, 6);
-        --     BackgroundTransparency = 1;
-        --     Image = 'http://www.roblox.com/asset/?id=9619665977';
-        --     ImageColor3 = Color3.new(0, 0, 0);
-        --     ZIndex = 19;
-        --     Parent = SatVibMap;
-        -- });
+        local CursorOuter = Library:Create('ImageLabel', {
+            AnchorPoint = Vector2.new(0.5, 0.5);
+            Size = UDim2.new(0, 6, 0, 6);
+            BackgroundTransparency = 1;
+            Image = 'http://www.roblox.com/asset/?id=9619665977';
+            ImageColor3 = Color3.new(0, 0, 0);
+            ZIndex = 19;
+            Parent = SatVibMap;
+        });
 
-        -- local CursorInner = Library:Create('ImageLabel', {
-        --     Size = UDim2.new(0, CursorOuter.Size.X.Offset - 2, 0, CursorOuter.Size.Y.Offset - 2);
-        --     Position = UDim2.new(0, 1, 0, 1);
-        --     BackgroundTransparency = 1;
-        --     Image = 'http://www.roblox.com/asset/?id=9619665977';
-        --     ZIndex = 20;
-        --     Parent = CursorOuter;
-        -- })
+        local CursorInner = Library:Create('ImageLabel', {
+            Size = UDim2.new(0, CursorOuter.Size.X.Offset - 2, 0, CursorOuter.Size.Y.Offset - 2);
+            Position = UDim2.new(0, 1, 0, 1);
+            BackgroundTransparency = 1;
+            Image = 'http://www.roblox.com/asset/?id=9619665977';
+            ZIndex = 20;
+            Parent = CursorOuter;
+        })
 
         local HueSelectorOuter = Library:Create('Frame', {
             BorderColor3 = Color3.new(0, 0, 0);
@@ -3518,7 +3518,6 @@ function Library:CreateWindow(...)
         ModalElement.Modal = Toggled;
 
         if Toggled then
-            print("True mouse")
             -- A bit scuffed, but if we're going from not toggled -> toggled we want to show the frame immediately so that the fade is visible.
             Outer.Visible = true;
 
@@ -3527,6 +3526,7 @@ function Library:CreateWindow(...)
                 local State = InputService.MouseIconEnabled;
 
                 local Cursor = Drawing.new('Triangle');
+                
                 Cursor.Thickness = 1;
                 Cursor.Filled = true;
                 Cursor.Visible = true;
@@ -3635,3 +3635,5 @@ Players.PlayerRemoving:Connect(OnPlayerChange);
 
 getgenv().Library = Library
 return Library
+
+print("New Versionn")

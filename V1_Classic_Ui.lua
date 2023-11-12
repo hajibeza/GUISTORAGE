@@ -3335,3 +3335,4 @@ function MIDN:Window(text)
 	end
 	return ServerHold
 end
+return MIDN

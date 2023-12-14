@@ -67,7 +67,20 @@ spawn(function()
     while wait() do
         pcall(function()
             if Auto_Farm_Level then
-                print("AutoFarm")
+				if not string.find(game.Players.LocalPlayer.LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, NameMon) then
+					game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
+				end
+
+                if not game.Players.LocalPlayer.LocalPlayer.PlayerGui.Main.Quest.Visible then
+                    CheckQuest()
+                    TP(CFrameQuest)
+					if (CFrameQuest.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 3 then
+						wait(1.2)
+						game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest",NameQuest,LevelQuest)
+						game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SetSpawnPoint")
+						wait(0.5)
+					end
+                end
             end
         end)
     end

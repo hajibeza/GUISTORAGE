@@ -26,7 +26,9 @@ function TP(P)
         game.Players.LocalPlayer.Character.HumanoidRootPart,
         TweenInfo.new(Distance/Speed, Enum.EasingStyle.Linear),
         {CFrame = P}
-    ):Play()
+    )
+    
+    tween:Play()
 
     function cancelTween()
         tween:Cancel()

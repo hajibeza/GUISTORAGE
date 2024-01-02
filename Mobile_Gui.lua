@@ -12,11 +12,11 @@ local Mouse = LocalPlayer:GetMouse();
 
 local ProtectGui = protectgui or (syn and syn.protect_gui) or (function() end);
 
-if not Ui_X_Size then
+if Ui_X_Size == nil then
     Ui_X_Size = 550
 end
 
-if not Ui_Y_Size then
+if Ui_Y_Size == nil then
     Ui_Y_Size = 300
 end
 

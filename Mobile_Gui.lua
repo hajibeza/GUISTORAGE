@@ -12,11 +12,11 @@ local Mouse = LocalPlayer:GetMouse();
 
 local ProtectGui = protectgui or (syn and syn.protect_gui) or (function() end);
 
-if Ui_X_Size == nil then
+if not Ui_X_Size then
     Ui_X_Size = 550
 end
 
-if Ui_Y_Size == nil then
+if not Ui_Y_Size then
     Ui_Y_Size = 300
 end
 
@@ -2957,7 +2957,7 @@ function Library:CreateWindow(...)
     if type(Config.MenuFadeTime) ~= 'number' then Config.MenuFadeTime = 0.2 end
 
     if typeof(Config.Position) ~= 'UDim2' then Config.Position = UDim2.fromOffset(175, 50) end
-    if typeof(Config.Size) ~= 'UDim2' then Config.Size = UDim2.fromOffset(Ui_X_Size, UI_Y_Size) end
+    if typeof(Config.Size) ~= 'UDim2' then Config.Size = UDim2.fromOffset(Ui_X_Size, Ui_Y_Size) end
 
     if Config.Center then
         Config.AnchorPoint = Vector2.new(0.5, 0.5)

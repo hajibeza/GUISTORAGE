@@ -176,24 +176,24 @@ function Library:MakeDraggable(Instance, Cutoff)
     Instance.Active = true;
 
     Instance.InputBegan:Connect(function(Input)
-        if Input.UserInputType == Enum.UserInputType.MouseButton1 then
+        if Input.UserInputType == Enum.UserInputType.MouseButton1 or Input.UserInputType == Enum.UserInputType.Touch then
             local ObjPos = Vector2.new(
                 Mouse.X - Instance.AbsolutePosition.X,
                 Mouse.Y - Instance.AbsolutePosition.Y
             );
-
+    
             if ObjPos.Y > (Cutoff or 40) then
                 return;
             end;
-
-            while InputService:IsMouseButtonPressed(Enum.UserInputType.MouseButton1) do
+    
+            while InputService:IsMouseButtonPressed(Enum.UserInputType.MouseButton1) or InputService:IsTouchEnabled() do
                 Instance.Position = UDim2.new(
                     0,
                     Mouse.X - ObjPos.X + (Instance.Size.X.Offset * Instance.AnchorPoint.X),
                     0,
                     Mouse.Y - ObjPos.Y + (Instance.Size.Y.Offset * Instance.AnchorPoint.Y)
                 );
-
+    
                 RenderStepped:Wait();
             end;
         end;
@@ -3646,4 +3646,3 @@ Players.PlayerRemoving:Connect(OnPlayerChange);
 
 getgenv().Library = Library
 return Library
-

@@ -3626,6 +3626,25 @@ function Library:CreateWindow(...)
 
     if Config.AutoShow then task.spawn(Library.Toggle) end
 
+    local RIPHUB = Instance.new("ScreenGui")
+    local IMAGE_ID = "rbxassetid://7040391851"  -- Replace 1234567890 with your image ID
+
+    RIPHUB.Name = "RIPHUB"
+    RIPHUB.Parent = game.CoreGui
+
+    local OPENCLOSE = Instance.new("ImageButton")
+    OPENCLOSE.Name = "OPENCLOSE"
+    OPENCLOSE.Parent = RIPHUB
+    OPENCLOSE.BackgroundTransparency = 1
+    OPENCLOSE.Image = IMAGE_ID
+    OPENCLOSE.ImageColor3 = Color3.fromRGB(102, 255, 51)
+    OPENCLOSE.Position = UDim2.new(0.044827585, 0, 0.263414639, 0)
+    OPENCLOSE.Size = UDim2.new(0.0847916649, 0, 1, 0)
+    OPENCLOSE.MouseButton1Click:Connect(function()
+        task.spawn(Library.Toggle)
+    end)
+
+
     Window.Holder = Outer;
 
     return Window;

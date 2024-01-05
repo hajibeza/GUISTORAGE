@@ -3639,11 +3639,10 @@ function Library:CreateWindow(...)
     OPENCLOSE.Image = IMAGE_ID
     OPENCLOSE.ImageColor3 = Color3.fromRGB(102, 255, 51)
     OPENCLOSE.Position = UDim2.new(0.044827585, 0, 0.263414639, 0)
-    OPENCLOSE.Size = UDim2.new(0.0847916649, 0, 1, 0)
+    OPENCLOSE.Size = UDim2.new(0, 48, 0, 48)
     OPENCLOSE.MouseButton1Click:Connect(function()
         task.spawn(Library.Toggle)
     end)
-
 
     Window.Holder = Outer;
 

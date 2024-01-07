@@ -1507,9 +1507,9 @@ do
             end
 
             local function ValidateClick(Input)
-                -- if Library:MouseIsOverOpenedFrame() then
-                --     return false
-                -- end
+                if Library:MouseIsOverOpenedFrame() then
+                    return false
+                end
 
                 if Input.UserInputType ~= Enum.UserInputType.MouseButton1 or Input.UserInputType ~= Enum.UserInputType.Touch then
                     return false

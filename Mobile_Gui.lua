@@ -1513,7 +1513,7 @@ do
                 if Input.UserInputType ~= Enum.UserInputType.MouseButton1 and Input.UserInputType ~= Enum.UserInputType.Touch then
                     return false
                 end
-                return false
+                return true
             end
 
             Button.Outer.InputBegan:Connect(function(Input)

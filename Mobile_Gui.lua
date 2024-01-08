@@ -1501,11 +1501,14 @@ do
                     return false
                 end
 
-                if Input.UserInputType ~= Enum.UserInputType.MouseButton1 or Input.UserInputType ~= Enum.UserInputType.Touch then
-                    return false
+                if Input.UserInputType == Enum.UserInputType.MouseButton1 then
+                    return true
                 end
 
-                return true
+                if Input.UserInputType == Enum.UserInputType.Touch then
+                    return true
+                end
+                return false
             end
 
             Button.Outer.InputBegan:Connect(function(Input)

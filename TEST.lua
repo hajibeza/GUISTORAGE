@@ -1,186 +1,158 @@
-function Funcs:AddButton(...)
-        -- TODO: Eventually redo this
-        local Button = {};
-        local function ProcessButtonParams(Class, Obj, ...)
-            local Props = select(1, ...)
-            if type(Props) == 'table' then
-                Obj.Text = Props.Text
-                Obj.Func = Props.Func
-                Obj.DoubleClick = Props.DoubleClick
-                Obj.Tooltip = Props.Tooltip
-            else
-                Obj.Text = select(1, ...)
-                Obj.Func = select(2, ...)
+local Player = game.Players
+local Local_Player = Player.LocalPlayer
+local Char = Local_Player.Character
+local Root = Char.HumanoidRootPart
+Players = game.Players
+
+Teleport_Island = true
+
+CanTeleport = {
+    {
+        ["Sky3"] = Vector3.new(-7894, 5547, -380),
+        ["Sky3Exit"] = Vector3.new(-4607, 874, -1667),
+        ["UnderWater"] = Vector3.new(61163, 11, 1819),
+        ["UnderwaterExit"] = Vector3.new(4050, -1, -1814),
+    },
+    {
+        ["Swan Mansion"] = Vector3.new(-390, 332, 673),
+        ["Swan Room"] = Vector3.new(2285, 15, 905),
+        ["Cursed Ship"] = Vector3.new(923, 126, 32852),
+    },
+    {
+        ["Floating Turtle"] = Vector3.new(-12462, 375, -7552),
+        ["Hydra Island"] = Vector3.new(5745, 610, -267),
+        ["Mansion"] = Vector3.new(-12462, 375, -7552),
+        ["Castle"] = Vector3.new(-5036, 315, -3179),
+    }
+}
+
+dist = function(Position_a,Position_b,noHeight)
+    local pa,pb = pcall(function()
+        if not Position_b then
+            if Local_Player.Character:FindFirstChild("HumanoidRootPart") then
+                Position_b = Local_Player.Character.HumanoidRootPart.Position
             end
-
-            assert(type(Obj.Func) == 'function', 'AddButton: `Func` callback is missing.');
         end
+    end)
+    if not pa then warn(pb) end
+    return (Vector3.new(Position_a.X,not noHeight and Position_a.Y,Position_a.Z) - Vector3.new(Position_b.X,not noHeight and Position_b.Y,Position_b.Z)).magnitude
+end
 
-        ProcessButtonParams('Button', Button, ...)
-
-        local Groupbox = self;
-        local Container = Groupbox.Container;
-
-        local function CreateBaseButton(Button)
-            local Outer = Library:Create('Frame', {
-                BackgroundColor3 = Color3.new(0, 0, 0);
-                BorderColor3 = Color3.new(0, 0, 0);
-                Size = UDim2.new(1, -4, 0, 20);
-                ZIndex = 5;
-            });
-
-            local Inner = Library:Create('Frame', {
-                BackgroundColor3 = Library.MainColor;
-                BorderColor3 = Library.OutlineColor;
-                BorderMode = Enum.BorderMode.Inset;
-                Size = UDim2.new(1, 0, 1, 0);
-                ZIndex = 6;
-                Parent = Outer;
-            });
-
-            local Label = Library:CreateLabel({
-                Size = UDim2.new(1, 0, 1, 0);
-                TextSize = 14;
-                Text = Button.Text;
-                ZIndex = 6;
-                Parent = Inner;
-            });
-
-            Library:Create('UIGradient', {
-                Color = ColorSequence.new({
-                    ColorSequenceKeypoint.new(0, Color3.new(1, 1, 1)),
-                    ColorSequenceKeypoint.new(1, Color3.fromRGB(212, 212, 212))
-                });
-                Rotation = 90;
-                Parent = Inner;
-            });
-
-            Library:AddToRegistry(Outer, {
-                BorderColor3 = 'Black';
-            });
-
-            Library:AddToRegistry(Inner, {
-                BackgroundColor3 = 'MainColor';
-                BorderColor3 = 'OutlineColor';
-            });
-
-            Library:OnHighlight(Outer, Outer,
-                { BorderColor3 = 'AccentColor' },
-                { BorderColor3 = 'Black' }
-            );
-
-            return Outer, Inner, Label
+InArea = function(Pos,Location)
+    local nearest,scale = nil,0
+    if Location then
+        if dist(Pos,Location.Position,true) <= (Location.Mesh.Scale.X/2)+500 then
+            return Location
         end
+    end
+    for i,v in pairs(workspace._WorldOrigin.Locations:GetChildren()) do
+        if dist(Pos,v.Position,true) <= (v.Mesh.Scale.X/2)+500 then
+            if scale < v.Mesh.Scale.X then
+                scale = v.Mesh.Scale.X
+                nearest = v
+            end
+        end
+    end
+    return nearest
+end
 
-        local function InitEvents(Button)
-            local function WaitForEvent(event, timeout, validator)
-                local bindable = Instance.new('BindableEvent')
-                local connection = event:Once(function(...)
-
-                    if type(validator) == 'function' and validator(...) then
-                        bindable:Fire(true)
-                    else
-                        bindable:Fire(false)
+function TP(...)
+    local target = ...
+    pcall(function()
+        if Teleport_Island then
+            local Dista,distm,middle = dist(target,nil,true),1/0
+            if Local_Player.Character and Local_Player.Character.HumanoidRootPart and Dista >= 2000 and tick() - recentlySpawn > 5 then
+                for i,v in pairs(CanTeleport[SeaIndex]) do
+                    local distance = dist(v,target,true)
+                    if distance < dist(target,nil,true) and distance < distm then
+                        distm,middle = distance,v
                     end
-                end)
-                task.delay(timeout, function()
-                    connection:disconnect()
-                    bindable:Fire(false)
-                end)
-                return bindable.Event:Wait()
-            end
-
-            local function ValidateClick(Input)
-                if Library:MouseIsOverOpenedFrame() then
-                    return false
                 end
-
-                if Input.UserInputType ~= Enum.UserInputType.MouseButton1 or Input.UserInputType == Enum.UserInputType.Touch then
-                    return false
+                if middle and InArea(Local_Player.Character.HumanoidRootPart.Position) ~= InArea(middle) then
+                    -- print(Root.Position,"\n",target.p)
+                    -- print(Dista,distm,CurrentArea,InArea(middle))
+                    Use_Remote("requestEntrance",middle)
                 end
-
-                return true
             end
-
-            Button.Outer.InputBegan:Connect(function(Input)
-                if not ValidateClick(Input) then return end
-                if Button.Locked then return end
-
-                if Button.DoubleClick then
-                    Library:RemoveFromRegistry(Button.Label)
-                    Library:AddToRegistry(Button.Label, { TextColor3 = 'AccentColor' })
-
-                    Button.Label.TextColor3 = Library.AccentColor
-                    Button.Label.Text = 'Are you sure?'
-                    Button.Locked = true
-
-                    local clicked = WaitForEvent(Button.Outer.InputBegan, 0.5, ValidateClick)
-
-                    Library:RemoveFromRegistry(Button.Label)
-                    Library:AddToRegistry(Button.Label, { TextColor3 = 'FontColor' })
-
-                    Button.Label.TextColor3 = Library.FontColor
-                    Button.Label.Text = Button.Text
-                    task.defer(rawset, Button, 'Locked', false)
-
-                    if clicked then
-                        Library:SafeCallback(Button.Func)
+        end
+        if not disableIslandSkip and Bypass_Tp then
+            if Local_Player.Character.HumanoidRootPart and not Raiding() then
+                local Area = InArea(target.p)
+                local MyArea = InArea(Local_Player.Character.HumanoidRootPart.Position)
+                local SpawnPoint = workspace["_WorldOrigin"].PlayerSpawns[Local_Player.Team.Name]:GetChildren()
+                local dista,distm,charDist,nearest = 2000,9000
+                for i,v in pairs(SpawnPoint) do
+                    local Position = v:GetPivot().p
+                    local distance = dist(target.p,Position,true)
+                    if distance <= dista then
+                        charDist = dist(Position,nil,true)
+                        dista,nearest = distance,v
                     end
-
-                    return
+                end 
+                if nearest and (charDist <= 8700) then
+                    if not Local_Player.Character:FindFirstChild("Humanoid") then return end
+                    if not Local_Player.Character:FindFirstChild("HumanoidRootPart") then return end
+                    if Local_Player.Character.HumanoidRootPart:FindFirstChild("Died") then
+                        Local_Player.Character.HumanoidRootPart.Died:Destroy()
+                    end
+                    repeat wait()
+                        pcall(task.spawn,Use_Remote,"SetLastSpawnPoint",nearest.Name)
+                    until Local_Player.Data.LastSpawnPoint.Value == nearest.Name
+                    pcall(function()
+                        Local_Player.Character.Humanoid:ChangeState(15)
+                    end)
+                    repeat wait(.1) until Local_Player.Character.HumanoidRootPart.Parent
                 end
-
-                Library:SafeCallback(Button.Func);
-            end)
-        end
-
-        Button.Outer, Button.Inner, Button.Label = CreateBaseButton(Button)
-        Button.Outer.Parent = Container
-
-        InitEvents(Button)
-
-        function Button:AddTooltip(tooltip)
-            if type(tooltip) == 'string' then
-                Library:AddToolTip(tooltip, self.Outer)
             end
-            return self
         end
-
-
-        function Button:AddButton(...)
-            local SubButton = {}
-
-            ProcessButtonParams('SubButton', SubButton, ...)
-
-            self.Outer.Size = UDim2.new(0.5, -2, 0, 20)
-
-            SubButton.Outer, SubButton.Inner, SubButton.Label = CreateBaseButton(SubButton)
-
-            SubButton.Outer.Position = UDim2.new(1, 3, 0, 0)
-            SubButton.Outer.Size = UDim2.fromOffset(self.Outer.AbsoluteSize.X - 2, self.Outer.AbsoluteSize.Y)
-            SubButton.Outer.Parent = self.Outer
-
-            function SubButton:AddTooltip(tooltip)
-                if type(tooltip) == 'string' then
-                    Library:AddToolTip(tooltip, self.Outer)
-                end
-                return SubButton
+        if tweenActive and lastTweenTarget and (dist(target, lastTweenTarget) < 10 or dist(lastTweenTarget) >= 10) then
+            return
+        end
+        tweenid = (tweenid or 0) + 1 
+        lastTweenTarget = target
+        local Char = Local_Player.Character
+        local Root = Char.HumanoidRootPart
+        thisId = tweenid
+        Util = require(game:GetService("ReplicatedStorage").Util)
+        if Util.FPSTracker.FPS > 60 then
+            setfpscap(60)
+        end
+        task.spawn(pcall,function()
+            lastPos = {tick(),target}
+            local currentDistance = dist(Root.Position, target, true)
+            local oldDistance = currentDistance
+            Char.Humanoid:SetStateEnabled(13,false)
+            while Root and currentDistance > 75 and thisId == tweenid and Char.Humanoid.Health > 0 do
+                local Percent = (58/math.clamp(Util.FPSTracker.FPS,0,60))
+                local Speed = 6*Percent
+                local Current = Root.Position
+                local Dift = Vector3.new(target.X,0,target.Z) - Vector3.new(Current.X,0,Current.Z)
+                local Sx =  (Dift.X < 0 and -1 or 1)*Speed
+                local Sz =  (Dift.Z < 0 and -1 or 1)*Speed
+                local SpeedX = math.abs(Dift.X) < Sx and Dift.X or Sx
+                local SpeedZ = math.abs(Dift.Z) < Sz and Dift.Z or Sz
+                task.spawn(function()
+                    currentDistance = dist(Root.Position, target, true)
+                    if currentDistance > oldDistance+10 then
+                        tweenid = -1
+                        tweenPause = true
+                        Root.Anchored = true
+                        wait(1)
+                        tweenPause = false
+                        Root.Anchored = false
+                    end
+                    oldDistance = currentDistance
+                end)
+                Root.CFrame = Root.CFrame + Vector3.new(math.abs(SpeedZ) < (5*Percent) and SpeedX or SpeedX/1.5, 0, math.abs(SpeedX) < (5*Percent) and SpeedZ or SpeedZ/1.5)
+                Root.CFrame = CFrame.new(Root.CFrame.X,target.Y,Root.CFrame.Z)
+                tweenActive = true
+                task.wait(0.001)
             end
-
-            if type(SubButton.Tooltip) == 'string' then
-                SubButton:AddTooltip(SubButton.Tooltip)
+            Char.Humanoid:SetStateEnabled(13,true)
+            tweenActive = false
+            if currentDistance <= 100 and thisId == tweenid then
+                Root.CFrame = target
             end
-
-            InitEvents(SubButton)
-            return SubButton
-        end
-
-        if type(Button.Tooltip) == 'string' then
-            Button:AddTooltip(Button.Tooltip)
-        end
-
-        Groupbox:AddBlank(5);
-        Groupbox:Resize();
-
-        return Button;
-    end;
+        end)
+    end)
+end

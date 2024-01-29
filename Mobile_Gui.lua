@@ -2315,6 +2315,7 @@ do
             BorderSizePixel = 0;
             CanvasSize = UDim2.new(0, 0, 0, 0);
             Size = UDim2.new(1, 0, 1, 0);
+            ScrollBarThickness = 1;
             ZIndex = 21;
             Parent = ListInner;
 
@@ -2333,7 +2334,7 @@ do
             Padding = UDim.new(0, 3);
             FillDirection = Enum.FillDirection.Vertical;
             SortOrder = Enum.SortOrder.LayoutOrder;
-            HorizontalAlignment = Enum.HorizontalAlignment.Right;
+            -- HorizontalAlignment = Enum.HorizontalAlignment.Right;
             Parent = Scrolling;
         });
 

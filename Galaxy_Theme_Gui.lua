@@ -219,12 +219,12 @@ local ThemeManager = {} do
 		table.insert(paths, self.Folder .. '/themes')
 		table.insert(paths, self.Folder .. '/settings')
 
-		for i = 1, #paths do
-			local str = paths[i]
-			if not isfolder(str) then
-				makefolder(str)
-			end
-		end
+		-- for i = 1, #paths do
+		-- 	local str = paths[i]
+		-- 	if not isfolder(str) then
+		-- 		makefolder(str)
+		-- 	end
+		-- end
 	end
 
 	function ThemeManager:SetFolder(folder)

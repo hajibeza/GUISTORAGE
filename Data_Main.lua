@@ -3624,27 +3624,22 @@ function Library:CreateWindow(...)
     if Config.AutoShow then task.spawn(Library.Toggle) end
 
     local RIPHUB = Instance.new("ScreenGui")
-    local IMAGE_ID = "rbxassetid://71844490734251"  -- Make sure this image ID is correct
+    local IMAGE_ID = "rbxassetid://97288158040991"  -- Replace with your image ID
     
     RIPHUB.Name = "RIPHUB"
-    RIPHUB.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")  -- Use PlayerGui for local scripts
+    RIPHUB.Parent = game.CoreGui
     
     local OPENCLOSE = Instance.new("ImageButton")
     OPENCLOSE.Name = "OPENCLOSE"
     OPENCLOSE.Parent = RIPHUB
-    OPENCLOSE.BackgroundTransparency = 1  -- Make background transparent
-    OPENCLOSE.Image = IMAGE_ID  -- Assign the updated image ID here
-    OPENCLOSE.ImageColor3 = Color3.fromRGB(102, 255, 51)  -- Color tint (green)
+    OPENCLOSE.BackgroundTransparency = 0  -- Set background transparency to 0
+    OPENCLOSE.BackgroundColor3 = Color3.fromRGB(0, 0, 0)  -- Set background color to black
+    OPENCLOSE.Image = IMAGE_ID
+    OPENCLOSE.ImageColor3 = Color3.fromRGB(102, 255, 51)
     OPENCLOSE.Position = UDim2.new(0.044827585, 0, 0.263414639, 0)
     OPENCLOSE.Size = UDim2.new(0, 48, 0, 48)
-    
-    -- Make sure Library.Toggle is properly defined before connecting
     OPENCLOSE.MouseButton1Click:Connect(function()
-        if Library and Library.Toggle then
-            task.spawn(Library.Toggle)
-        else
-            warn("Library.Toggle is not defined!")
-        end
+        task.spawn(Library.Toggle)
     end)    
 
     Window.Holder = Outer;

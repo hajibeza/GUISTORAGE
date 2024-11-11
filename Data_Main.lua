@@ -3632,10 +3632,10 @@ function Library:CreateWindow(...)
     local OPENCLOSE = Instance.new("ImageButton")
     OPENCLOSE.Name = "OPENCLOSE"
     OPENCLOSE.Parent = RIPHUB
-    OPENCLOSE.BackgroundTransparency = 0  -- Set background transparency to 0
-    OPENCLOSE.BackgroundColor3 = Color3.fromRGB(0, 0, 0)  -- Set background color to black
+    OPENCLOSE.BackgroundTransparency = 0
+    OPENCLOSE.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
     OPENCLOSE.Image = IMAGE_ID
-    OPENCLOSE.ImageColor3 = Color3.fromRGB(102, 255, 51)
+    OPENCLOSE.ImageColor3 = Color3.fromRGB(37, 137, 245)
     OPENCLOSE.Position = UDim2.new(0.044827585, 0, 0.263414639, 0)
     OPENCLOSE.Size = UDim2.new(0, 48, 0, 48)
     OPENCLOSE.MouseButton1Click:Connect(function()

@@ -5065,7 +5065,7 @@ local aa = {
     end,
     [47] = function()
         local aa, ab, ac, ad, ae = b(47)
-        local af = {Names = {"Dark", "Darker", "Light", "Aqua", "Amethyst", "Rose"}}
+        local af = {Names = {"Dark", "Darker", "Light", "Aqua", "Amethyst", "Rose","Unique"}}
         for ag, ah in next, ab:GetChildren() do
             local aj = ac(ah)
             af[aj.Name] = aj
@@ -5299,7 +5299,7 @@ local aa = {
             Hover = Color3.fromRGB(200, 120, 170),
             HoverChange = 0.04
         }
-    end
+    end,
     [54] = function()
         local aa, ab, ac, ad, ae = b(54)
         return {

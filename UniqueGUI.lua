@@ -7,6 +7,30 @@
     License: MIT
     GitHub: https://github.com/dawid-scripts/Fluent
 --]]
+
+local RIPHUB = Instance.new("ScreenGui")
+local IMAGE_ID = "rbxassetid://83006091480833"  -- ใช้ Image ID ที่คุณให้มา
+
+RIPHUB.Name = "RIPHUB"
+RIPHUB.Parent = game.CoreGui
+
+local OPENCLOSE = Instance.new("ImageButton")
+OPENCLOSE.Name = "OPENCLOSE"
+OPENCLOSE.Parent = RIPHUB
+OPENCLOSE.BackgroundTransparency = 0
+OPENCLOSE.BackgroundColor3 = Color3.fromRGB(0, 0, 0) -- สีดำ
+OPENCLOSE.Image = IMAGE_ID
+OPENCLOSE.Size = UDim2.new(0, 48, 0, 48) -- ขนาดปุ่ม
+
+-- 🟢 ปรับให้ปุ่มอยู่ "กึ่งกลางหน้าจอ" (แต่เลื่อนขึ้นไปเล็กน้อย)
+OPENCLOSE.Position = UDim2.new(0.5, -24, 0.05, -24)
+
+-- 🟢 เพิ่มมุมโค้งให้ปุ่ม
+local UICorner = Instance.new("UICorner")
+UICorner.CornerRadius = UDim.new(0, 12) -- ปรับค่าตรงนี้ถ้าอยากให้โค้งมากขึ้น
+UICorner.Parent = OPENCLOSE
+
+
 local a, b = {
     {
         1,
@@ -119,7 +143,7 @@ local aa = {
         local p, q, r, s = e(o.Creator), e(o.Elements), e(o.Acrylic), o.Components
         local t, u, v = e(s.Notification), p.New, protectgui or (syn and syn.protect_gui) or function()
                 end
-        local w = u("UnqiueGUI", {Parent = i:IsStudio() and j.PlayerGui or game.Players.LocalPlayer.PlayerGui})
+        local w = u("ScreenGui", {Parent = i:IsStudio() and j.PlayerGui or game.Players.LocalPlayer.PlayerGui})
         v(w)
         t:Init(w)
         local x = {
@@ -1880,6 +1904,12 @@ local aa = {
                         v:Minimize()
                     end
                 end
+            )
+            m.AddSignal(
+                OPENCLOSE.MouseButton1Click:Connect(function()
+                    -- task.spawn(Library.Toggle)
+                    v:Minimize()
+                end)
             )
             function v.Minimize(M)
                 v.Minimized = not v.Minimized
